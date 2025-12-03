@@ -9,3 +9,8 @@ script = ExtResource("1_s8gpp")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(495, 348)
 texture = ExtResource("1_w80i6")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0.21568628, 1, 1, 1)
+position = Vector2(80, 72)
+texture = ExtResource("1_w80i6")

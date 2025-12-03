@@ -3,6 +3,7 @@ extends Node2D
 @export var move_speed := Vector2(200.0, 200.0)
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var icon: Sprite2D = $Icon
 
 var sprite_size := Vector2.ZERO
 
@@ -23,8 +24,20 @@ func _process(delta: float) -> void:
 	
 	var viewport := get_viewport_rect().size
 	
+	# update icon position
 	sprite_2d.position += move_speed * delta
+	# make the icon bounce off the edges of the screen
 	if sprite_2d.position.x < sprite_size.x or sprite_2d.position.x > viewport.x - sprite_size.x:
+		# clamping makes sure it stays in the viewport window
+		sprite_2d.position.x = clampf(sprite_2d.position.x, sprite_size.x, viewport.x - sprite_size.x)
 		move_speed.x = -move_speed.x
 	if sprite_2d.position.y < sprite_size.y or sprite_2d.position.y > viewport.y - sprite_size.y:
+		# clamping just make sure there is no clipping and it getting stuck in the wall
+		sprite_2d.position.y = clampf(sprite_2d.position.y, sprite_size.y, viewport.y - sprite_size.y)
 		move_speed.y = -move_speed.y
+		
+	# Exercise: Create a moving Sprite2D that moves from the top left to the bottom
+	#           right while also scaling up
+	
+	icon.position += Vector2(200, 85) * delta
+	icon.scale += Vector2(0.5, 0.5) * delta
