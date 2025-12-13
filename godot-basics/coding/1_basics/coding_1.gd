@@ -8,4 +8,4 @@ func _process(_delta: float) -> void:
 	
 func something() -> void:
 	print("something")
-	print(123)
+	print(1235)

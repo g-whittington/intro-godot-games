@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bul0h4y525b61"]
 
-[ext_resource type="Script" uid="uid://bxbuh47yagwsn" path="res://coding/coding_2.gd" id="1_s8gpp"]
+[ext_resource type="Script" uid="uid://bxbuh47yagwsn" path="res://coding/2_properties_and_methods/coding_2.gd" id="1_s8gpp"]
 [ext_resource type="Texture2D" uid="uid://vbb4fnpoi5i8" path="res://icon.svg" id="1_w80i6"]
 
 [node name="Coding2" type="Node2D"]
