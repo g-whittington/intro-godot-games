@@ -7,5 +7,5 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	scale += Vector2.ONE * delta
+func _process(_delta: float) -> void:
+	pass
