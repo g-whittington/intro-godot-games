@@ -1,10 +1,12 @@
 class_name Player
 extends CharacterBody2D
 
+
 var direction: Vector2 = Vector2.ZERO
 var speed: int = 100
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

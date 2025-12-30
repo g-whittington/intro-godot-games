@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cik0suxpxidrw"]
+
+[ext_resource type="Texture2D" uid="uid://cgvtilagem3np" path="res://graphics/objects/red car.png" id="1_aes6j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dav3"]
+size = Vector2(12, 19)
+
+[node name="RedCar" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aes6j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_8dav3")
