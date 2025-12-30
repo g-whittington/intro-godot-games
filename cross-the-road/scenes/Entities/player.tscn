@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://diga35h5dcftg"]
 
-[ext_resource type="Script" uid="uid://cicu4wb58mnh3" path="res://scenes/player.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://cicu4wb58mnh3" path="res://scenes/Entities/player.gd" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://c4q6c7mxqh78h" path="res://graphics/player/player_tileset.png" id="2_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
@@ -103,7 +103,7 @@ script = ExtResource("2_g2els")
 sprite_frames = SubResource("SpriteFrames_a8ls1")
 animation = &"walk_down"
 autoplay = "walk_left"
-frame_progress = 0.9631
+frame_progress = 0.3046194
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)

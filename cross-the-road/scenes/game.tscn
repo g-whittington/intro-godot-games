@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bv8i8jtv5wrty"]
+[gd_scene load_steps=11 format=3 uid="uid://bv8i8jtv5wrty"]
 
 [ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics/map.png" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://diga35h5dcftg" path="res://scenes/player.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://bbfmsoktw6ntb" path="res://scenes/bunch_of_trees.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://diga35h5dcftg" path="res://scenes/Entities/player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bbfmsoktw6ntb" path="res://scenes/Objects/tree_bunch.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://bninb8iuolm18" path="res://scenes/Objects/green_tree.tscn" id="4_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cdkpadlx6m05n" path="res://scenes/Objects/orange_tree.tscn" id="5_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://cvacr7bwxon1r" path="res://scenes/Objects/trash_bin.tscn" id="6_gee14"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lnu2h"]
 b = Vector2(0, 640)
@@ -23,33 +26,96 @@ metadata/_edit_horizontal_guides_ = [1184.0]
 texture = ExtResource("1_uwrxv")
 
 [node name="Player" parent="Map" instance=ExtResource("2_yqjtg")]
-position = Vector2(24, 44)
+position = Vector2(-105, 305)
 
-[node name="EnvironmentTrees" type="Node2D" parent="."]
+[node name="EnvironmentObjects" type="Node2D" parent="."]
 
-[node name="Environment" parent="EnvironmentTrees" instance=ExtResource("3_lnu2h")]
+[node name="TreeBunches" type="Node2D" parent="EnvironmentObjects"]
+
+[node name="TreeBunch" parent="EnvironmentObjects/TreeBunches" instance=ExtResource("3_lnu2h")]
 position = Vector2(66, 17)
 
-[node name="Environment2" parent="EnvironmentTrees" instance=ExtResource("3_lnu2h")]
+[node name="TreeBunch2" parent="EnvironmentObjects/TreeBunches" instance=ExtResource("3_lnu2h")]
 position = Vector2(112, 58)
 
-[node name="Environment3" parent="EnvironmentTrees" instance=ExtResource("3_lnu2h")]
+[node name="TreeBunch3" parent="EnvironmentObjects/TreeBunches" instance=ExtResource("3_lnu2h")]
 position = Vector2(-49, 58)
 
-[node name="Environment4" parent="EnvironmentTrees" instance=ExtResource("3_lnu2h")]
+[node name="TreeBunch4" parent="EnvironmentObjects/TreeBunches" instance=ExtResource("3_lnu2h")]
 position = Vector2(-143, 59)
 
-[node name="Environment5" parent="EnvironmentTrees" instance=ExtResource("3_lnu2h")]
+[node name="TreeBunch5" parent="EnvironmentObjects/TreeBunches" instance=ExtResource("3_lnu2h")]
 position = Vector2(-69, 205)
 
-[node name="Environment6" parent="EnvironmentTrees" instance=ExtResource("3_lnu2h")]
+[node name="TreeBunch6" parent="EnvironmentObjects/TreeBunches" instance=ExtResource("3_lnu2h")]
 position = Vector2(-142, 206)
 
-[node name="Environment7" parent="EnvironmentTrees" instance=ExtResource("3_lnu2h")]
+[node name="TreeBunch7" parent="EnvironmentObjects/TreeBunches" instance=ExtResource("3_lnu2h")]
 position = Vector2(-93, -212)
 
-[node name="Environment8" parent="EnvironmentTrees" instance=ExtResource("3_lnu2h")]
+[node name="TreeBunch8" parent="EnvironmentObjects/TreeBunches" instance=ExtResource("3_lnu2h")]
 position = Vector2(125, -211)
+
+[node name="TreeBunch9" parent="EnvironmentObjects/TreeBunches" instance=ExtResource("3_lnu2h")]
+position = Vector2(119, 301)
+
+[node name="Trees" type="Node2D" parent="EnvironmentObjects"]
+
+[node name="GreenTree" parent="EnvironmentObjects/Trees" instance=ExtResource("4_p57ef")]
+position = Vector2(-8, 10)
+
+[node name="OrangeTree" parent="EnvironmentObjects/Trees" instance=ExtResource("5_u5sy4")]
+position = Vector2(55, 59)
+
+[node name="GreenTree2" parent="EnvironmentObjects/Trees" instance=ExtResource("4_p57ef")]
+position = Vector2(-52, 246)
+
+[node name="OrangeTree2" parent="EnvironmentObjects/Trees" instance=ExtResource("5_u5sy4")]
+position = Vector2(-28, 295)
+
+[node name="GreenTree3" parent="EnvironmentObjects/Trees" instance=ExtResource("4_p57ef")]
+position = Vector2(33, 233)
+
+[node name="GreenTree4" parent="EnvironmentObjects/Trees" instance=ExtResource("4_p57ef")]
+position = Vector2(40, 293)
+
+[node name="OrangeTree3" parent="EnvironmentObjects/Trees" instance=ExtResource("5_u5sy4")]
+position = Vector2(3, 260)
+
+[node name="GreenTree5" parent="EnvironmentObjects/Trees" instance=ExtResource("4_p57ef")]
+position = Vector2(76, 260)
+
+[node name="GreenTree6" parent="EnvironmentObjects/Trees" instance=ExtResource("4_p57ef")]
+position = Vector2(106, 229)
+
+[node name="OrangeTree4" parent="EnvironmentObjects/Trees" instance=ExtResource("5_u5sy4")]
+position = Vector2(128, 258)
+
+[node name="OrangeTree5" parent="EnvironmentObjects/Trees" instance=ExtResource("5_u5sy4")]
+position = Vector2(170, 294)
+
+[node name="GreenTree7" parent="EnvironmentObjects/Trees" instance=ExtResource("4_p57ef")]
+position = Vector2(166, 250)
+
+[node name="GreenTree8" parent="EnvironmentObjects/Trees" instance=ExtResource("4_p57ef")]
+position = Vector2(-179, 298)
+
+[node name="OrangeTree6" parent="EnvironmentObjects/Trees" instance=ExtResource("5_u5sy4")]
+position = Vector2(-145, 269)
+
+[node name="OrangeTree7" parent="EnvironmentObjects/Trees" instance=ExtResource("5_u5sy4")]
+position = Vector2(-176, 241)
+
+[node name="TrashBins" type="Node2D" parent="EnvironmentObjects"]
+
+[node name="TrashBin" parent="EnvironmentObjects/TrashBins" instance=ExtResource("6_gee14")]
+position = Vector2(-22, 36)
+
+[node name="TrashBin2" parent="EnvironmentObjects/TrashBins" instance=ExtResource("6_gee14")]
+position = Vector2(-145, -164)
+
+[node name="TrashBin3" parent="EnvironmentObjects/TrashBins" instance=ExtResource("6_gee14")]
+position = Vector2(151, -166)
 
 [node name="WorldBoundary" type="Node2D" parent="."]
 
