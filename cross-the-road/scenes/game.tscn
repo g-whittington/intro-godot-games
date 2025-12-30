@@ -1,8 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv8i8jtv5wrty"]
+[gd_scene load_steps=8 format=3 uid="uid://bv8i8jtv5wrty"]
 
 [ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics/map.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://diga35h5dcftg" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bbfmsoktw6ntb" path="res://scenes/bunch_of_trees.tscn" id="3_lnu2h"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lnu2h"]
+b = Vector2(0, 640)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lbhrr"]
+b = Vector2(0, 640)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_iywne"]
+b = Vector2(0, 384)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_p57ef"]
+b = Vector2(0, 384)
 
 [node name="Game" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [1184.0]
@@ -13,7 +25,7 @@ texture = ExtResource("1_uwrxv")
 [node name="Player" parent="Map" instance=ExtResource("2_yqjtg")]
 position = Vector2(24, 44)
 
-[node name="EnvironmentTrees" type="Node" parent="."]
+[node name="EnvironmentTrees" type="Node2D" parent="."]
 
 [node name="Environment" parent="EnvironmentTrees" instance=ExtResource("3_lnu2h")]
 position = Vector2(66, 17)
@@ -38,3 +50,31 @@ position = Vector2(-93, -212)
 
 [node name="Environment8" parent="EnvironmentTrees" instance=ExtResource("3_lnu2h")]
 position = Vector2(125, -211)
+
+[node name="WorldBoundary" type="Node2D" parent="."]
+
+[node name="Left" type="StaticBody2D" parent="WorldBoundary"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary/Left"]
+position = Vector2(-193, -320)
+shape = SubResource("SegmentShape2D_lnu2h")
+
+[node name="Right" type="StaticBody2D" parent="WorldBoundary"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary/Right"]
+position = Vector2(193, -320)
+shape = SubResource("SegmentShape2D_lbhrr")
+
+[node name="Up" type="StaticBody2D" parent="WorldBoundary"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary/Up"]
+position = Vector2(-192, -321)
+rotation = -1.5707964
+shape = SubResource("SegmentShape2D_iywne")
+
+[node name="Down" type="StaticBody2D" parent="WorldBoundary"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBoundary/Down"]
+position = Vector2(-192, 321)
+rotation = -1.5707964
+shape = SubResource("SegmentShape2D_p57ef")
