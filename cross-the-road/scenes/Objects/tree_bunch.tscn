@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://y3ndpd5bhsi3" path="res://graphics/objects/tree2.png" id="2_d5dl1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kai8y"]
-size = Vector2(16, 8)
+size = Vector2(16, 7)
 
 [node name="TreeBunch" type="StaticBody2D"]
 
@@ -20,5 +20,5 @@ texture = ExtResource("1_fm4en")
 texture = ExtResource("2_d5dl1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
+position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_kai8y")
