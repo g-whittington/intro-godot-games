@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbfmsoktw6ntb"]
+[gd_scene load_steps=5 format=3 uid="uid://bbfmsoktw6ntb"]
 
-[ext_resource type="Script" uid="uid://gs3i3epd6h33" path="res://scenes/environment.gd" id="1_d5dl1"]
+[ext_resource type="Script" uid="uid://gs3i3epd6h33" path="res://scenes/bunch_of_trees.gd" id="1_d5dl1"]
 [ext_resource type="Texture2D" uid="uid://d0so81ys3820n" path="res://graphics/objects/tree1.png" id="1_fm4en"]
 [ext_resource type="Texture2D" uid="uid://y3ndpd5bhsi3" path="res://graphics/objects/tree2.png" id="2_d5dl1"]
 
-[node name="Environment" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kai8y"]
+size = Vector2(22, 30)
+
+[node name="BunchOfTrees" type="StaticBody2D"]
 script = ExtResource("1_d5dl1")
 
 [node name="Tree1" type="Sprite2D" parent="."]
@@ -17,3 +20,6 @@ texture = ExtResource("1_fm4en")
 
 [node name="Tree3" type="Sprite2D" parent="."]
 texture = ExtResource("2_d5dl1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kai8y")

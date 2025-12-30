@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics/map.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://diga35h5dcftg" path="res://scenes/player.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://bbfmsoktw6ntb" path="res://scenes/environment.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://bbfmsoktw6ntb" path="res://scenes/bunch_of_trees.tscn" id="3_lnu2h"]
 
 [node name="Game" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [1184.0]
