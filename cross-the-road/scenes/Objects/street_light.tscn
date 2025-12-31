@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpjk50j4peol3"]
+
+[ext_resource type="Texture2D" uid="uid://b778fphjcav0" path="res://graphics/objects/light.png" id="1_gclcc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqdo4"]
+size = Vector2(10, 28)
+
+[node name="StreetLight" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gclcc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eqdo4")

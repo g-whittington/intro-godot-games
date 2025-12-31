@@ -4,7 +4,7 @@ extends Node2D
 const CAR: PackedScene = preload("uid://cik0suxpxidrw")
 
 # Container to hold all spawned cars
-@onready var active_cars: Node2D = $CarSystem/ActiveCars
+@onready var active_cars: Node2D = $GameObjects/ActiveCars
 @onready var car_start_positions: Node2D = $CarSystem/CarStartPositions
 
 
