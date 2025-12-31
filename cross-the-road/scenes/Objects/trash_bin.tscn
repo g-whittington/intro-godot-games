@@ -8,6 +8,7 @@
 size = Vector2(29, 13)
 
 [node name="TrashBin" type="StaticBody2D"]
+collision_mask = 0
 
 [node name="Bin" type="Sprite2D" parent="."]
 texture = ExtResource("1_3wst6")
