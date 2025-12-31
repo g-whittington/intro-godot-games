@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cdkpadlx6m05n" path="res://scenes/objects/orange_tree.tscn" id="5_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://cvacr7bwxon1r" path="res://scenes/objects/trash_bin.tscn" id="6_gee14"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
+size = Vector2(384, 127)
+
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lnu2h"]
 b = Vector2(0, 640)
 
@@ -20,18 +23,22 @@ b = Vector2(0, 384)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_p57ef"]
 b = Vector2(0, 384)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
-size = Vector2(384, 127)
-
 [node name="Game" type="Node2D"]
 script = ExtResource("1_u5sy4")
 metadata/_edit_horizontal_guides_ = [1184.0]
+metadata/_edit_vertical_guides_ = [250.0]
 
 [node name="Map" type="Sprite2D" parent="."]
 texture = ExtResource("1_uwrxv")
 
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(-105, 305)
+
+[node name="WinZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinZone"]
+position = Vector2(0, -256.5)
+shape = SubResource("RectangleShape2D_u5sy4")
 
 [node name="EnvironmentObjects" type="Node2D" parent="."]
 
@@ -150,14 +157,38 @@ position = Vector2(-192, 321)
 rotation = -1.5707964
 shape = SubResource("SegmentShape2D_p57ef")
 
-[node name="CarSpawnTimer" type="Timer" parent="."]
-wait_time = 4.0
+[node name="CarSystem" type="Node2D" parent="."]
+
+[node name="CarSpawnTimer" type="Timer" parent="CarSystem"]
 autostart = true
 
-[node name="WinZone" type="Area2D" parent="."]
+[node name="ActiveCars" type="Node2D" parent="CarSystem"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WinZone"]
-position = Vector2(0, -256.5)
-shape = SubResource("RectangleShape2D_u5sy4")
+[node name="CarStartPositions" type="Node2D" parent="CarSystem"]
+
+[node name="Left1" type="Marker2D" parent="CarSystem/CarStartPositions"]
+position = Vector2(-207, -96)
+
+[node name="Left2" type="Marker2D" parent="CarSystem/CarStartPositions"]
+position = Vector2(-208, 0)
+
+[node name="Left3" type="Marker2D" parent="CarSystem/CarStartPositions"]
+position = Vector2(-207, 113)
+
+[node name="Left4" type="Marker2D" parent="CarSystem/CarStartPositions"]
+position = Vector2(-206, 159)
+
+[node name="Right1" type="Marker2D" parent="CarSystem/CarStartPositions"]
+position = Vector2(209, -118)
+
+[node name="Right2" type="Marker2D" parent="CarSystem/CarStartPositions"]
+position = Vector2(208, -22)
+
+[node name="Right3" type="Marker2D" parent="CarSystem/CarStartPositions"]
+position = Vector2(209, 91)
+
+[node name="Right4" type="Marker2D" parent="CarSystem/CarStartPositions"]
+position = Vector2(210, 137)
 
 [connection signal="body_entered" from="WinZone" to="." method="_on_win_zone_body_entered"]
+[connection signal="timeout" from="CarSystem/CarSpawnTimer" to="." method="_on_car_spawn_timer_timeout"]
