@@ -278,6 +278,7 @@ shape = SubResource("SegmentShape2D_p57ef")
 [node name="CarSystem" type="Node2D" parent="."]
 
 [node name="CarSpawnTimer" type="Timer" parent="CarSystem"]
+wait_time = 0.2
 autostart = true
 
 [node name="CarStartPositions" type="Node2D" parent="CarSystem"]
