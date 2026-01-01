@@ -3,13 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://cfe22lwgaf1k2" path="res://graphics/objects/traffic.png" id="1_i0t07"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0feq"]
-size = Vector2(5, 28)
+size = Vector2(5, 8)
 
 [node name="TrafficLight" type="StaticBody2D"]
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_i0t07")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3.5, 0)
+position = Vector2(3.5, 10)
 shape = SubResource("RectangleShape2D_n0feq")

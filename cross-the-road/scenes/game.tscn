@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bv8i8jtv5wrty"]
+[gd_scene load_steps=17 format=3 uid="uid://bv8i8jtv5wrty"]
 
 [ext_resource type="Script" uid="uid://pkso3n0exq2" path="res://scenes/game.gd" id="1_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics/map.png" id="1_uwrxv"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cvacr7bwxon1r" path="res://scenes/objects/trash_bin.tscn" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://dsm8cp3414b5c" path="res://scenes/objects/barrier.tscn" id="8_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://bpjk50j4peol3" path="res://scenes/objects/street_light.tscn" id="9_vtaks"]
+[ext_resource type="PackedScene" uid="uid://dhcik7rhisu6t" path="res://scenes/objects/street_sign.tscn" id="10_vtaks"]
+[ext_resource type="PackedScene" uid="uid://cj6geo15jdhas" path="res://scenes/objects/house.tscn" id="11_kvpfn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
 size = Vector2(384, 127)
@@ -44,7 +46,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="TreeBunch" parent="GameObjects/EnvironmentObjects/TreeBunches" instance=ExtResource("3_lnu2h")]
-position = Vector2(66, 17)
+position = Vector2(74, 23)
 
 [node name="TreeBunch2" parent="GameObjects/EnvironmentObjects/TreeBunches" instance=ExtResource("3_lnu2h")]
 position = Vector2(112, 58)
@@ -143,13 +145,10 @@ position = Vector2(130, -76)
 position = Vector2(-123, 39)
 
 [node name="Barrier4" parent="GameObjects/EnvironmentObjects/Barriers" instance=ExtResource("8_0tnpc")]
-position = Vector2(-105, 39)
+position = Vector2(-98, 39)
 
 [node name="Barrier5" parent="GameObjects/EnvironmentObjects/Barriers" instance=ExtResource("8_0tnpc")]
-position = Vector2(-88, 39)
-
-[node name="Barrier6" parent="GameObjects/EnvironmentObjects/Barriers" instance=ExtResource("8_0tnpc")]
-position = Vector2(-70, 39)
+position = Vector2(-74, 39)
 
 [node name="Barrier7" parent="GameObjects/EnvironmentObjects/Barriers" instance=ExtResource("8_0tnpc")]
 position = Vector2(135, 39)
@@ -211,7 +210,23 @@ position = Vector2(85, 171)
 [node name="StreetSigns" type="Node2D" parent="GameObjects/EnvironmentObjects"]
 y_sort_enabled = true
 
-[node name="TrafficLight" type="Node2D" parent="GameObjects/EnvironmentObjects"]
+[node name="StreetSign" parent="GameObjects/EnvironmentObjects/StreetSigns" instance=ExtResource("10_vtaks")]
+position = Vector2(-7, 59)
+
+[node name="StreetSign2" parent="GameObjects/EnvironmentObjects/StreetSigns" instance=ExtResource("10_vtaks")]
+position = Vector2(57, 8)
+
+[node name="Houses" type="Node2D" parent="GameObjects/EnvironmentObjects"]
+y_sort_enabled = true
+
+[node name="House" parent="GameObjects/EnvironmentObjects/Houses" instance=ExtResource("11_kvpfn")]
+position = Vector2(-150, -285)
+
+[node name="House2" parent="GameObjects/EnvironmentObjects/Houses" instance=ExtResource("11_kvpfn")]
+position = Vector2(150, -285)
+
+[node name="TrashBin" parent="GameObjects/EnvironmentObjects/Houses" instance=ExtResource("6_gee14")]
+position = Vector2(-171, 48)
 
 [node name="ActiveCars" type="Node2D" parent="GameObjects"]
 y_sort_enabled = true

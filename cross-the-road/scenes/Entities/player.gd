@@ -23,11 +23,14 @@ func _physics_process(_delta: float) -> void:
 	# play correct animation based on direction
 	animation()
 	
+	
+	# good warning to have, but we are not using the value
+	@warning_ignore("return_value_discarded")
 	# allow Godot to calculate position
 	move_and_slide()
 
 
-func animation():
+func animation() -> void:
 	# only false with Vector2(0,0)
 	if direction:
 		animated_sprite_2d.flip_h = direction.x > 0

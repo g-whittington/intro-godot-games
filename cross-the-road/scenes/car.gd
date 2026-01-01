@@ -2,7 +2,7 @@ extends Area2D
 
 # movement vars for the car instance
 var direction : Vector2
-var speed := 125
+var speed: int = 125
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 

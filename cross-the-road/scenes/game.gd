@@ -21,6 +21,8 @@ func _on_car_spawn_timer_timeout() -> void:
 	var start_pos: Marker2D = car_start_positions.get_children().pick_random()
 	car.position = start_pos.position
 	
+	# good warning to have, but we are not using the value
+	@warning_ignore("return_value_discarded")
 	# connect the body_entered signal in code
 	car.body_entered.connect(go_to_title)
 	
