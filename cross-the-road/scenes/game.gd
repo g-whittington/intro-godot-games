@@ -35,7 +35,15 @@ func _on_score_timer_timeout() -> void:
 	time_counter.text = "Time: " + str(time_from_start)
 	
 	
+func _on_win_zone_body_entered(body: Node2D) -> void:
+	# only save the fastest time
+	if time_from_start < Global.score_time:
+		Global.score_time = time_from_start
+	go_to_title(body)
+	
+	
 # function connected to each car 
 func go_to_title(body: Node2D) -> void:
 	if body is Player:
+		
 		get_tree().call_deferred("change_scene_to_file", "res://scenes/ui/title_screen.tscn")
