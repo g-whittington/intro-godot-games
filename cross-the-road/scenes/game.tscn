@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bv8i8jtv5wrty"]
+[gd_scene load_steps=18 format=3 uid="uid://bv8i8jtv5wrty"]
 
 [ext_resource type="Script" uid="uid://pkso3n0exq2" path="res://scenes/game.gd" id="1_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics/map.png" id="1_uwrxv"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bpjk50j4peol3" path="res://scenes/objects/street_light.tscn" id="9_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dhcik7rhisu6t" path="res://scenes/objects/street_sign.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://cj6geo15jdhas" path="res://scenes/objects/house.tscn" id="11_kvpfn"]
+[ext_resource type="FontFile" uid="uid://hqpa84d2dqvp" path="res://fonts/Better VCR 9.0.1.ttf" id="12_dinhu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
 size = Vector2(384, 127)
@@ -313,5 +314,27 @@ position = Vector2(209, 91)
 [node name="Right4" type="Marker2D" parent="CarSystem/CarStartPositions"]
 position = Vector2(210, 137)
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TimeCounter" type="Label" parent="HUD"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_top = 5.0
+offset_right = 30.5
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("12_dinhu")
+theme_override_font_sizes/font_size = 28
+text = "Time: 0"
+horizontal_alignment = 1
+
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="WinZone" to="." method="_on_win_zone_body_entered"]
 [connection signal="timeout" from="CarSystem/CarSpawnTimer" to="." method="_on_car_spawn_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
