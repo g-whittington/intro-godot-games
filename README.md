@@ -2,13 +2,13 @@
 
 Learning Godot by making games. Based game creations are done by Christian Koch
 
-## 1. A basic runner game where you dodge enemies
+## 1. A basic runner game where you dodge enemies inspired by Frogger
 
 ### Learning Outcomes
 
-- Thing 1
-- Thing 2
-- Thing 3
+- Creating and working with a wide range of 2D scenes
+- Incorporate basic scene transition
+- Introduce Global nodes / scenes
 
 ### Art Assets
 
