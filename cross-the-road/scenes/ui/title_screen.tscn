@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpuravrjjuxrb"]
+[gd_scene format=3 uid="uid://dpuravrjjuxrb"]
 
 [ext_resource type="Script" uid="uid://d1wuap7kso6h1" path="res://scenes/ui/title_screen.gd" id="1_a4ium"]
 [ext_resource type="FontFile" uid="uid://dr201ov4c76pb" path="res://fonts/Crackman.otf" id="1_eb34j"]
 [ext_resource type="Texture2D" uid="uid://bkgrir378horu" path="res://graphics/player/player_simple.png" id="2_aqpy5"]
 [ext_resource type="FontFile" uid="uid://hqpa84d2dqvp" path="res://fonts/Better VCR 9.0.1.ttf" id="3_w8uqo"]
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" unique_id=1799700376]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a4ium")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=948719734]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.63, 0.32277003, 0.14490001, 1)
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=1250719148]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -40,7 +40,7 @@ theme_override_fonts/font = ExtResource("1_eb34j")
 theme_override_font_sizes/font_size = 120
 text = "Cross the Road"
 
-[node name="PlayerIcon" type="TextureRect" parent="."]
+[node name="PlayerIcon" type="TextureRect" parent="." unique_id=951683948]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -55,7 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_aqpy5")
 
-[node name="FastestTime" type="Label" parent="."]
+[node name="FastestTime" type="Label" parent="." unique_id=529494732]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -73,7 +73,7 @@ theme_override_font_sizes/font_size = 30
 text = "Fastest Time: 123"
 horizontal_alignment = 1
 
-[node name="EntryText" type="Label" parent="."]
+[node name="EntryText" type="Label" parent="." unique_id=1321677692]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
