@@ -6,14 +6,21 @@ const SPEED: int = 300
 const JUMP_VELOCITY: int = -400
 const GRAVITY: int = 980
 
+var direction: float
+
 # small state machine
 enum State {FLOOR, JUMP, FALL}
 
 var active_state: State = State.FLOOR
 
+# so a cool down can be inplemented
+var can_shoot: bool = true
+
+@onready var reload_timer: Timer = %ReloadTimer
+
 
 func _physics_process(delta: float) -> void:
-	var direction: float = Input.get_axis("move_left","move_right")
+	direction = Input.get_axis("move_left","move_right")
 	
 	match active_state:
 		State.FLOOR:
@@ -44,10 +51,17 @@ func _physics_process(delta: float) -> void:
 			# fall untill on a floor
 			if is_on_floor():
 				change_state(State.FLOOR)
-			
+	
+	# firing of weapon can be from any state
+	if Input.is_action_just_pressed("shoot") and can_shoot:
+		print("shoot")
+		can_shoot = false
+		reload_timer.start()
+		
+	
 	@warning_ignore("return_value_discarded")
 	move_and_slide()
-	
+
 
 func change_state(to_state: State) -> void:
 	active_state = to_state
@@ -62,3 +76,8 @@ func change_state(to_state: State) -> void:
 		State.FALL:
 			pass
 			# play animation
+
+
+func _on_reload_timer_timeout() -> void:
+	print("reloading...")
+	can_shoot = true

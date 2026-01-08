@@ -7,11 +7,11 @@ size = Vector2(1054, 91)
 
 [node name="Level1" type="Node2D" unique_id=1878023371]
 
+[node name="Player" parent="." unique_id=356439837 instance=ExtResource("1_4apx1")]
+position = Vector2(638, 183)
+
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1707114009]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=2038726262]
 position = Vector2(657, 357)
 shape = SubResource("RectangleShape2D_14su8")
-
-[node name="Player" parent="Floor" unique_id=356439837 instance=ExtResource("1_4apx1")]
-position = Vector2(638, 183)

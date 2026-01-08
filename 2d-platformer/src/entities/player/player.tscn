@@ -9,3 +9,10 @@ script = ExtResource("1_4m8ck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2027405176]
 shape = SubResource("CapsuleShape2D_s8n7f")
+
+[node name="ReloadTimer" type="Timer" parent="." unique_id=1387290039]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
