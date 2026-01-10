@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 
+# signal and scene to handle shooting
+signal shot_fired(pos: Vector2, dir: Vector2)
+
 # movement values
 const SPEED: int = 300
 const JUMP_VELOCITY: int = -400
@@ -37,8 +40,6 @@ func _physics_process(delta: float) -> void:
 		State.JUMP:
 			velocity.x = direction * SPEED
 			# flip sprite horizontally
-			# also calculate here so we hit max jump
-			velocity.y += GRAVITY * delta
 			
 			if Input.is_action_just_released("jump") or velocity.y >= 0:
 				velocity.y = 0
@@ -46,15 +47,20 @@ func _physics_process(delta: float) -> void:
 		State.FALL:
 			velocity.x = direction * SPEED
 			# flip sprite horizontally
-			velocity.y += GRAVITY * delta
 			
-			# fall untill on a floor
+			# fall until on a floor
 			if is_on_floor():
 				change_state(State.FLOOR)
 	
+	# always apply gravity
+	velocity.y += GRAVITY * delta
+	
 	# firing of weapon can be from any state
 	if Input.is_action_just_pressed("shoot") and can_shoot:
-		print("shoot")
+		shot_fired.emit(
+			position,
+			get_local_mouse_position().normalized()
+		)
 		can_shoot = false
 		reload_timer.start()
 		
