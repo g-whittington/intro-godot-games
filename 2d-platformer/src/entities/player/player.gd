@@ -13,47 +13,41 @@ var direction: float
 
 # small state machine
 enum State {FLOOR, JUMP, FALL}
-
 var active_state: State = State.FLOOR
 
 # so a cool down can be inplemented
 var can_shoot: bool = true
-
 @onready var reload_timer: Timer = %ReloadTimer
+
+# to handle sprites with multiple parts doing different things
+@onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 
 func _physics_process(delta: float) -> void:
 	direction = Input.get_axis("move_left","move_right")
+	velocity.x = direction * SPEED
+	# always apply gravity
+	velocity.y += GRAVITY * delta
+	
+	# only flip sprite when moving
+	sprite_2d.flip_h = direction < 0 if direction else sprite_2d.flip_h
 	
 	match active_state:
 		State.FLOOR:
-			# handles both idle and moving
-			velocity.x = direction * SPEED
-			# handle animation here
-			# flip sprite horizontally
-			
 			# conditions to not be on the floor
 			if Input.is_action_just_pressed("jump"):
 				change_state(State.JUMP)
 			if not is_on_floor():
 				change_state(State.FALL)
 		State.JUMP:
-			velocity.x = direction * SPEED
-			# flip sprite horizontally
-			
 			if Input.is_action_just_released("jump") or velocity.y >= 0:
 				velocity.y = 0
 				change_state(State.FALL)
 		State.FALL:
-			velocity.x = direction * SPEED
-			# flip sprite horizontally
-			
 			# fall until on a floor
 			if is_on_floor():
 				change_state(State.FLOOR)
-	
-	# always apply gravity
-	velocity.y += GRAVITY * delta
 	
 	# firing of weapon can be from any state
 	if Input.is_action_just_pressed("shoot") and can_shoot:
@@ -63,7 +57,6 @@ func _physics_process(delta: float) -> void:
 		)
 		can_shoot = false
 		reload_timer.start()
-		
 	
 	@warning_ignore("return_value_discarded")
 	move_and_slide()
