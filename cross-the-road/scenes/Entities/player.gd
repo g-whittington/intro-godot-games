@@ -23,7 +23,6 @@ func _physics_process(_delta: float) -> void:
 	# play correct animation based on direction
 	animation()
 	
-	
 	# good warning to have, but we are not using the value
 	@warning_ignore("return_value_discarded")
 	# allow Godot to calculate position

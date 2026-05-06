@@ -5,8 +5,50 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s8n7f"]
 
+[sub_resource type="Animation" id="Animation_muk8e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_ketdh"]
+resource_name = "legs_air"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
+}
+
 [sub_resource type="Animation" id="Animation_vt6n5"]
 resource_name = "legs_idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
 
 [sub_resource type="Animation" id="Animation_wrxq6"]
 resource_name = "run"
@@ -27,6 +69,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ketdh"]
 _data = {
+&"RESET": SubResource("Animation_muk8e"),
+&"legs_air": SubResource("Animation_ketdh"),
 &"legs_idle": SubResource("Animation_vt6n5"),
 &"legs_run": SubResource("Animation_wrxq6")
 }
@@ -51,10 +95,11 @@ position = Vector2(0, -8)
 texture = ExtResource("2_vt6n5")
 hframes = 8
 vframes = 3
-frame = 8
+frame = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1064993866]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_ketdh")
+autoplay = &"legs_idle"
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

@@ -42,12 +42,16 @@ func _physics_process(delta: float) -> void:
 				change_state(State.FALL)
 		State.JUMP:
 			if Input.is_action_just_released("jump") or velocity.y >= 0:
-				velocity.y = 0
+				# /3 to make feel more natural 
+				velocity.y = velocity.y/3
 				change_state(State.FALL)
 		State.FALL:
 			# fall until on a floor
 			if is_on_floor():
 				change_state(State.FLOOR)
+	
+	# play animation based on state
+	animation(active_state)
 	
 	# firing of weapon can be from any state
 	if Input.is_action_just_pressed("shoot") and can_shoot:
@@ -64,7 +68,6 @@ func _physics_process(delta: float) -> void:
 
 func change_state(to_state: State) -> void:
 	active_state = to_state
-	
 	# things to happen once on state transition
 	match active_state:
 		State.FLOOR:
@@ -75,6 +78,17 @@ func change_state(to_state: State) -> void:
 		State.FALL:
 			pass
 			# play animation
+
+
+func animation(current_state: State) -> void:
+	match current_state:
+		State.FLOOR:
+			if direction:
+				animation_player.current_animation = "legs_run"
+			else:
+				animation_player.current_animation = "legs_idle"
+		State.JUMP, State.FALL:
+			animation_player.current_animation = "legs_air"
 
 
 func _on_reload_timer_timeout() -> void:
