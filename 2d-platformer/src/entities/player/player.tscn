@@ -10,7 +10,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite/Legs:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,7 +25,7 @@ resource_name = "legs_air"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite/Legs:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -40,7 +40,7 @@ resource_name = "legs_idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite/Legs:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,7 +57,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite/Legs:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -89,13 +89,22 @@ unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1691288653]
-unique_name_in_owner = true
+[node name="Sprite" type="Node2D" parent="." unique_id=603885438]
 position = Vector2(0, -8)
+
+[node name="Legs" type="Sprite2D" parent="Sprite" unique_id=1691288653]
+unique_name_in_owner = true
 texture = ExtResource("2_vt6n5")
 hframes = 8
 vframes = 3
 frame = 16
+
+[node name="Torso" type="Sprite2D" parent="Sprite" unique_id=1872856577]
+unique_name_in_owner = true
+position = Vector2(0, -2)
+texture = ExtResource("2_vt6n5")
+hframes = 8
+vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1064993866]
 unique_name_in_owner = true

@@ -10,7 +10,7 @@ const JUMP_VELOCITY: int = -400
 const GRAVITY: int = 980
 
 var direction: float
-
+	# fall until on a floor
 # small state machine
 enum State {FLOOR, JUMP, FALL}
 var active_state: State = State.FLOOR
@@ -20,8 +20,21 @@ var can_shoot: bool = true
 @onready var reload_timer: Timer = %ReloadTimer
 
 # to handle sprites with multiple parts doing different things
-@onready var sprite_2d: Sprite2D = %Sprite2D
+@onready var legs: Sprite2D = %Legs
+@onready var torso: Sprite2D = %Torso
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
+
+# mapping mouse direction to sprite frames
+const gun_directions : Dictionary[Vector2i, int] = {
+	Vector2i(1,0):   0,
+	Vector2i(1,1):   1,
+	Vector2i(0,1):   2,
+	Vector2i(-1,1):  3,
+	Vector2i(-1,0):  4,
+	Vector2i(-1,-1): 5,
+	Vector2i(0,-1):  6,
+	Vector2i(1,-1):  7
+}
 
 
 func _physics_process(delta: float) -> void:
@@ -31,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	velocity.y += GRAVITY * delta
 	
 	# only flip sprite when moving
-	sprite_2d.flip_h = direction < 0 if direction else sprite_2d.flip_h
+	legs.flip_h = direction < 0 if direction else legs.flip_h
 	
 	match active_state:
 		State.FLOOR:
@@ -81,6 +94,7 @@ func change_state(to_state: State) -> void:
 
 
 func animation(current_state: State) -> void:
+	# leg animation
 	match current_state:
 		State.FLOOR:
 			if direction:
@@ -89,6 +103,14 @@ func animation(current_state: State) -> void:
 				animation_player.current_animation = "legs_idle"
 		State.JUMP, State.FALL:
 			animation_player.current_animation = "legs_air"
+	
+	# torso animation
+	var current_mouse_pos: Vector2 = get_local_mouse_position().normalized()
+	var gun_frame : Vector2i = Vector2i(
+		roundi(current_mouse_pos.x),
+		roundi(current_mouse_pos.y)
+	)
+	torso.frame = gun_directions[gun_frame]
 
 
 func _on_reload_timer_timeout() -> void:
