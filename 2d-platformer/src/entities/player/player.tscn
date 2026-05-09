@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ddibpna0orlh4" path="res://src/entities/player/player.gd" id="1_4m8ck"]
 [ext_resource type="Texture2D" uid="uid://de5wf7al0hknv" path="res://assets/graphics/characters/player.png" id="2_vt6n5"]
+[ext_resource type="Script" uid="uid://dtt62nybjtb81" path="res://src/entities/player/camera.gd" id="2_wrxq6"]
+[ext_resource type="Texture2D" uid="uid://otyoj5px7yk7" path="res://assets/graphics/ui/crosshair.png" id="3_muk8e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s8n7f"]
 
@@ -76,6 +78,8 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=356439837]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_4m8ck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2027405176]
@@ -83,6 +87,7 @@ shape = SubResource("CapsuleShape2D_s8n7f")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1954863152]
 zoom = Vector2(2, 2)
+script = ExtResource("2_wrxq6")
 
 [node name="ReloadTimer" type="Timer" parent="." unique_id=1387290039]
 unique_name_in_owner = true
@@ -110,5 +115,10 @@ vframes = 3
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_ketdh")
 autoplay = &"legs_idle"
+
+[node name="CrossHair" type="Sprite2D" parent="." unique_id=2035841214]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_muk8e")
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

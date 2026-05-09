@@ -9,8 +9,20 @@ const SPEED: int = 300
 const JUMP_VELOCITY: int = -400
 const GRAVITY: int = 980
 
+# mapping mouse direction to sprite frames
+const GUN_DIRECTIONS : Dictionary[Vector2i, int] = {
+	Vector2i(1,0):   0,
+	Vector2i(1,1):   1,
+	Vector2i(0,1):   2,
+	Vector2i(-1,1):  3,
+	Vector2i(-1,0):  4,
+	Vector2i(-1,-1): 5,
+	Vector2i(0,-1):  6,
+	Vector2i(1,-1):  7
+}
+
 var direction: float
-	# fall until on a floor
+
 # small state machine
 enum State {FLOOR, JUMP, FALL}
 var active_state: State = State.FLOOR
@@ -22,19 +34,8 @@ var can_shoot: bool = true
 # to handle sprites with multiple parts doing different things
 @onready var legs: Sprite2D = %Legs
 @onready var torso: Sprite2D = %Torso
+@onready var cross_hair: Sprite2D = %CrossHair
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
-
-# mapping mouse direction to sprite frames
-const gun_directions : Dictionary[Vector2i, int] = {
-	Vector2i(1,0):   0,
-	Vector2i(1,1):   1,
-	Vector2i(0,1):   2,
-	Vector2i(-1,1):  3,
-	Vector2i(-1,0):  4,
-	Vector2i(-1,-1): 5,
-	Vector2i(0,-1):  6,
-	Vector2i(1,-1):  7
-}
 
 
 func _physics_process(delta: float) -> void:
@@ -44,7 +45,8 @@ func _physics_process(delta: float) -> void:
 	velocity.y += GRAVITY * delta
 	
 	# only flip sprite when moving
-	legs.flip_h = direction < 0 if direction else legs.flip_h
+	leg
+s.flip_h = direction < 0 if direction else legs.flip_h
 	
 	match active_state:
 		State.FLOOR:
@@ -74,6 +76,13 @@ func _physics_process(delta: float) -> void:
 		)
 		can_shoot = false
 		reload_timer.start()
+		
+		# tween a simple anaimation
+		var tween: Tween = get_tree().create_tween()
+		@warning_ignore("return_value_discarded")
+		tween.tween_property(cross_hair, "scale", Vector2(0.1, 0.1), 0.25)
+		@warning_ignore("return_value_discarded")
+		tween.tween_property(cross_hair, "scale", Vector2(0.5, 0.5), 0.25)
 	
 	@warning_ignore("return_value_discarded")
 	move_and_slide()
@@ -87,10 +96,8 @@ func change_state(to_state: State) -> void:
 			pass
 		State.JUMP:
 			velocity.y = JUMP_VELOCITY
-			# play animation
 		State.FALL:
 			pass
-			# play animation
 
 
 func animation(current_state: State) -> void:
@@ -110,7 +117,10 @@ func animation(current_state: State) -> void:
 		roundi(current_mouse_pos.x),
 		roundi(current_mouse_pos.y)
 	)
-	torso.frame = gun_directions[gun_frame]
+	torso.frame = GUN_DIRECTIONS[gun_frame]
+	
+	# move cross hair
+	cross_hair.position = current_mouse_pos * 40
 
 
 func _on_reload_timer_timeout() -> void:
